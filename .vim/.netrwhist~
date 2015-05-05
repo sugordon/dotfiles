@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/gordon/.vim/bundle/jellybeans.vim/colors'
+let g:netrw_dirhist_2='/home/gordon/Documents/Coding/DSA/Sorting'
+let g:netrw_dirhist_3='/home/gordon/Documents/Coding/DSA'
+let g:netrw_dirhist_4='/home/gordon/Documents/Coding/DSA/Sorting'

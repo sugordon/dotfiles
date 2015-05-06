@@ -1,0 +1,52 @@
+"3.9 (created: 2015/02/15 15:49:05)
+
+highlight Bell border: 0 none; background-color: #222222;
+highlight CmdLine background: #222222; color: #afafaf; font-size: 9pt;
+highlight CompDesc color: #c6c6c6; width: 50%; font-size: 9pt;
+highlight CompItem[selected] background: #666666; color: #afafaf; 
+highlight CompResult width: 45%; overflow: hidden;font-size: 10pt; font-family: monospace; font-weight: normal;
+highlight CompTitle color: #afafaf; background: #222222; font-weight: bold;
+highlight CompTitle>* padding: 0 .5ex;
+highlight ErrorMsg color: #ffffff; background: red; font-weight: bold;
+highlight Filter font-weight: bold;color: #afafaf;
+highlight FrameIndicator background-color: #222222; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+highlight Function color: lightgreen; background: #222222;
+highlight Hint font-family: Sans; font-size: 10px; font-weight: bold; color: white; background-color: rgba(0, 0, 0, 0.5); border: solid 1px LightGray;
+highlight HintActive background: blue; color: #f6e9e9;
+highlight HintElem background-color: #222222; color: #f6e9e9;
+highlight InfoMsg color: #afafaf; background: #222222;
+highlight LineNr color: #afafaf; background: #222222;
+highlight ModeMsg color: #afafaf; background: #222222; "CmdLine when Not in Use
+highlight MoreMsg color: #afafaf; background: #222222;
+highlight NonText color: lightblue; min-height: 16px; padding-left: 2px;
+highlight Normal color: #afafaf; background: #222222;
+highlight Number color: tan; background: #222222
+highlight Question color: #ffffff; background: #222222; font-weight: bold;
+highlight StatusLine color: #ffffff; background: #000000; "font-size: 8pt;
+highlight String color: #222222; background: #afafaf;
+highlight Tag color: #222222; background: #afafaf;
+highlight Title color: #222222; background: #afafaf; font-weight: bold;
+highlight URL text-decoration: none; color: lightblue; background: inherit;
+highlight WarningMsg color: red; background: #222222;
+set gui=nonavigation
+nm v <Leader>
+nm <Leader>s <C-d>
+nm <C-A-s> <C-d>
+nm <Leader>w <C-u>
+nm <C-A-w> <C-u>
+nm <Leader>a <C-p>
+nm <C-A-a> <C-p>
+nm <Leader>d <C-n>
+nm <C-A-d> <C-n>
+nm <Leader>q <C-o>
+nm <C-A-q> <C-o>
+nm <Leader>e <C-i>
+nm <C-A-e> <C-i>
+set hinttimeout=600
+set hintchars=asdfgqwertzxcvb
+
+:command -nargs=* Google open google <args>
+
+source! /home/gordon/.vimperatorrc.local
+
+" vim: set ft=vimperator:

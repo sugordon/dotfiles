@@ -1,0 +1,15 @@
+[core]
+    editor = vim
+    pager = less
+[alias]
+    sh = show --pretty --name-only
+    st = status -sb
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --max-count=20
+    ch = checkout
+    co = checkout
+    df = diff
+    cp = cherry-pick
+    br = branch
+    fch = fetch --all
+    get = !git fch && git pull

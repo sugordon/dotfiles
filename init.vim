@@ -66,6 +66,7 @@ endif
 call plug#begin('~/.vim/bundle')
 " Colorscheme
 Plug 'nanotech/jellybeans.vim'
+Plug 'jacoborus/tender.vim'
 " Highlight matching HTML tags
 Plug 'Valloric/MatchTagAlways'
 " Commenting plugin, takes <leader>c[.] {{{
@@ -236,6 +237,7 @@ augroup END
 let g:jellybeans_overrides = {'SpecialKey': { 'guifg': '2C51A5'}}
 
 colorscheme jellybeans
+"colorscheme tender
 
 autocmd FileType tex :setlocal spell spelllang=en_us
 
@@ -306,6 +308,7 @@ let g:qs_second_occurrence_highlight_color = 81         " terminal vim
 
 "Airline{{{
 let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme = 'tender'
 "Show shiftwidth and expandtab (S for spaces, T for tabs) next to the encoding
 let g:airline_section_y = airline#section#create(['ffenc', ':%{&shiftwidth}-%{&expandtab?"s":"t"}'])
 "}}}
@@ -366,7 +369,7 @@ cabbrev s OverCommandLine<cr>s
 "}}}
 
 "Unite {{{
-set shortmess=ac
+set shortmess=a
 let g:unite_source_history_yank_enable = 1
 
 function! InsideGit()

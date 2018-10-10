@@ -1,0 +1,90 @@
+import base64
+from collections import Counter
+import string
+
+most_frequent_letters = 'etaoin'
+second_most_frequent = 'shrdlu'
+
+printable_chars = set(bytes(string.printable, 'ascii'))
+print(printable_chars)
+
+def best_match(decoded):
+    if not all(b in printable_chars for b in decoded):
+        return 0
+    chars = [chr(b).lower() for b in decoded if chr(b).isalpha()]
+    letterCount = Counter(chars)
+    score = 0
+    for common in letterCount.most_common(6):
+        if common[0] in most_frequent_letters:
+            score += common[1]*2
+        if common[0] in second_most_frequent:
+            score += common[1]
+    return score
+
+
+def to_bytes(s):
+    return bytearray.fromhex(s)
+
+def to_string(b):
+    return b.hex()
+
+def to_base64(hex_):
+    return base64.b64encode(hex_)
+
+def xor_buffer(buf1, buf2):
+    return bytes((a ^ b for a, b in zip(buf1, buf2)))
+
+def single_byte_cipher(encoded):
+    max_byte, max_val = 0, 0
+    max_decoded = None
+    for i in range(256):
+        cipher = bytes([i] * len(encoded))
+        decoded = xor_buffer(encoded, cipher)
+        score = best_match(decoded)
+        if score >= max_val:
+            max_byte = i
+            max_val = score
+            max_decoded = decoded
+    return max_decoded, max_val
+
+def single_character_xor(f):
+        max_score = 0
+        max_decoded = None
+        for i, line in enumerate(f):
+            decoded, score = single_byte_cipher(to_bytes(line.strip()))
+            if score >= max_score:
+                max_score = score
+                max_decoded = decoded
+        return max_decoded, max_score
+
+def repeating_key_xor(key, text):
+    keyIndex = 0
+    keyBuf = bytearray()
+    while len(keyBuf) < len(text):
+        keyBuf.append(key[keyIndex % len(key)])
+        keyIndex += 1
+    return xor_buffer(keyBuf, text)
+
+if __name__ == '__main__':
+    ## 1
+    input1 = '49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d'
+    print(to_base64(to_bytes(input1)))
+    
+    ## 2
+    input2a = to_bytes('1c0111001f010100061a024b53535009181c')
+    input2b = to_bytes('686974207468652062756c6c277320657965')
+    ans = xor_buffer(input2a, input2b)
+    print(to_string(ans))
+
+    ## 3
+    encoded = to_bytes('1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736')
+    print(single_byte_cipher(encoded))
+
+    ## 4
+    with open('4.txt') as f:
+        print(single_character_xor(f))
+
+    ## 5
+    key = b"ICE"
+    input5 = b"Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
+    print(to_string(repeating_key_xor(key, input5)))
